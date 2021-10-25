@@ -95,9 +95,7 @@ console.log(typeof client.result); // "string"
 let server = {
    data: 0,
    convertToString: function (callback) {
-      callback( () => {
-         return this.data + "";
-      });
+      callback(() => this.data + "");
    }
 };
 let client = {
