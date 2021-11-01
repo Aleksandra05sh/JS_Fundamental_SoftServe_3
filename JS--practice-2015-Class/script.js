@@ -96,7 +96,7 @@ class Validator {
   }
 
   static isLengthValid = function(value) {
-    if (typeof value === "number" &&  value > 0 && isFinite(value)){
+    if (typeof value === "number" &&  value > 0 && isFinite(value)) {
       return true;
     } else {
       return false;
@@ -109,7 +109,7 @@ class GeometricFigure {
   #axisY = 0;
 
   constructor(x, y) {
-    if (Validator.isCoordinateValid(x)){
+    if (Validator.isCoordinateValid(x)) {
       this.#axisX = x;
     }
 
@@ -139,12 +139,12 @@ class GeometricFigure {
   }  
 }
 
-class Rectangle extends GeometricFigure{
+class Rectangle extends GeometricFigure {
   #diagonalLength = 1;
 
   constructor(x, y, diagonal){
     super(x, y);
-    if (Validator.isLengthValid(diagonal)){
+    if (Validator.isLengthValid(diagonal)) {
       this.#diagonalLength = diagonal;
     } 
   }
@@ -157,11 +157,11 @@ class Rectangle extends GeometricFigure{
   }
 }
 
-class Circle extends GeometricFigure{
+class Circle extends GeometricFigure {
   #radiusLength = 1;
   constructor(x, y, radius){
     super(x, y);
-    if (Validator.isLengthValid(radius)){
+    if (Validator.isLengthValid(radius)) {
       this.#radiusLength = radius;
     }
   }
@@ -175,10 +175,10 @@ class Circle extends GeometricFigure{
 }
 
 
-const rectangle1 = new Rectangle(1, 2, 15)
+const rectangle1 = new Rectangle(1, 2, 15);
 rectangle1.axisY = 12;
 rectangle1.info;
-const circle1 = new Circle(1, 2, 15)
+const circle1 = new Circle(1, 2, 15);
 circle1.axisY = 33;
 circle1.info;
 
@@ -189,7 +189,7 @@ circle1.info;
 class GeometricFigure2 {
 
   constructor(x, y) {
-    if (Validator.isCoordinateValid(x)){
+    if (Validator.isCoordinateValid(x)) {
       this.__axisX = x;
     } else {
       this.__axisX = 0;
@@ -207,7 +207,7 @@ class GeometricFigure2 {
   }
 
   set axisX(x) {
-    if (Validator.isCoordinateValid(x)){
+    if (Validator.isCoordinateValid(x)) {
     this.__axisX = x;
     }
   }
@@ -217,7 +217,7 @@ class GeometricFigure2 {
   }
 
   set axisY(y) {
-    if (Validator.isCoordinateValid(y)){
+    if (Validator.isCoordinateValid(y)) {
     this.__axisY = y;
     }
   }  
@@ -226,7 +226,7 @@ class GeometricFigure2 {
 class Rectangle2 extends GeometricFigure2{
   constructor(x, y, diagonal){
     super(x, y);
-    if (Validator.isLengthValid(diagonal)){
+    if (Validator.isLengthValid(diagonal)) {
       this.__diagonalLength = diagonal;
     } else {
       this.__diagonalLength = 1;
@@ -237,7 +237,7 @@ class Rectangle2 extends GeometricFigure2{
     console.log(`Координаты фигуры:
     x: ${this.axisX}
     y: ${this.axisY}
-    диагональ: ${this.__diagonalLength}`)
+    диагональ: ${this.__diagonalLength}`);
   }
 }
 
@@ -255,14 +255,14 @@ class Circle2 extends GeometricFigure2{
     console.log(`Координаты фигуры:
     x: ${this.axisX}
     y: ${this.axisY}
-    радиус: ${this.__radiusLength}`)
+    радиус: ${this.__radiusLength}`);
   }
 }
 
-const rectangle2 = new Rectangle2(1, 2, 15)
+const rectangle2 = new Rectangle2(1, 2, 15);
 rectangle2.axisY = 12;
 rectangle2.info;
-const circle2 = new Circle2(1, 2, 15)
+const circle2 = new Circle2(1, 2, 15);
 circle2.axisY = 33;
 circle2.info;
 
@@ -285,7 +285,7 @@ class Square {
   }
 
   get side() {
-    return this._side 
+    return this._side;
   }
 
   set side(unverifiedSide){
@@ -295,7 +295,7 @@ class Square {
   }
   
   get perimeterP() {
-    return this._side * 4
+    return this._side * 4;
   }
 
   static sideValid(side) {
@@ -364,7 +364,7 @@ class Circle4 {
 
   //4
   cloneCircle() {
-    return Object.create(Object.getPrototypeOf(this), Object.getOwnPropertyDescriptors(this))
+    return new Circle4(this._centerX, this._centerY, this._radius);
   }
 
   //5
@@ -378,7 +378,7 @@ class Circle4 {
     const lYSquare = Math.pow((y - this._centerY), 2);
     const lRSquare = Math.pow(this._radius, 2);
     if ((lXSquare + lYSquare) < lRSquare) {
-      return true
+      return true;
     } else {
       return false;
     }
@@ -386,17 +386,17 @@ class Circle4 {
 
   //7
   toString(){
-    console.log(`Координаты центра круга:  
+    return `Координаты центра круга:  
     x: ${this._centerX};
     y: ${this._centerY};
-    радиус: ${this._radius}
-    длина окружности: ${this.circleLenght}.`)
+    радиус: ${this._radius};
+    длина окружности: ${this.circleLenght}.`
   }
 } 
 
 const a = new Circle4(1, 2, 5);
-console.dir(a)
-console.dir(a.cloneCircle())
-console.dir(a.createCircle(1, 2, 3))
-console.log(a.isInCircle(-10, 2))
-a.toString()
+console.dir(a);
+console.dir(a.cloneCircle());
+console.dir(a.createCircle(1, 2, 3));
+console.log(a.isInCircle(-10, 2));
+console.log(a.toString());
