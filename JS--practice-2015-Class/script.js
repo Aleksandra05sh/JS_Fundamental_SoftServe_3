@@ -368,7 +368,7 @@ class Circle4 {
   }
 
   //5
-  createCircle(x, y, r){
+  static createCircle(x, y, r){
     return new Circle4(x, y, r); 
   }
 
