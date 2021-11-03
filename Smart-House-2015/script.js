@@ -140,66 +140,62 @@ class TV extends Device {
       return true;
     } 
   } 
-
 } 
 
-const cond1 = new AirConditioning("Air1")
-console.dir(cond1);
-console.log(cond1.currentMode);
-cond1.changeMode()
-console.log(cond1.currentMode);
-cond1.changeMode()
-console.log(cond1.currentMode);
-cond1.changeMode()
-console.log(cond1.currentMode);
-cond1.changeMode()
-console.log(cond1.currentMode);
-console.log(cond1.temperature);
-cond1.decreaseTemperature();
-console.log(cond1.temperature);
-cond1.decreaseTemperature();
-console.log(cond1.temperature);
-cond1.decreaseTemperature();
-console.log(cond1.temperature);
+class SmartHouse {
+  constructor(name) {
+    this._name = name;
+    this._devices = [];
+  }
 
-const tv1 = new TV("tv")
-console.dir(tv1);
-console.log(tv1.channelName)
-tv1.nextChannel()
-console.log(tv1.channelName)
-tv1.nextChannel()
-console.log(tv1.channelName)
-tv1.nextChannel()
-console.log(tv1.channelName)
-tv1.nextChannel()
-console.log(tv1.channelName)
-tv1.nextChannel()
-console.log(tv1.channelName)
-tv1.previousChannel()
-console.log(tv1.channelName)
-tv1.previousChannel()
-console.log(tv1.channelName)
-console.log(tv1.volume)
-tv1.decreaseVolume()
-console.log(tv1.volume)
-tv1.decreaseVolume()
-console.log(tv1.volume)
-tv1.decreaseVolume()
-console.log(tv1.volume)
-tv1.channel = 5;
-console.log(tv1.channelName)
-console.log(tv1.isMute)
-tv1.mute()
-console.log(tv1.isMute)
-console.log(tv1.volume)
-tv1.decreaseVolume()
-console.log(tv1.isMute)
-console.log(tv1.volume)
-tv1.mute()
-console.log(tv1.isMute)
-console.log(tv1.volume)
-tv1.increaseVolume()
-console.log(tv1.isMute)
-console.log(tv1.volume)
+  get name() {
+    return this._name;
+  } 
+  
 
+  addDevice(device) {
+    if (this.getDeviceByName(device.name)) {
+      alert("Device already Exists");
+    } else {
+      this._devices.push(device);
+    }
+  }
 
+  get devices() {
+    return this._devices;
+  }
+
+  getDeviceByName(name) {
+    return this._devices.find((item) => item.name === name)
+  }
+
+  deleteDeviceByName(name) {
+    const index = this._devices.indexOf(this.getDeviceByName(name));
+    this._devices.splice(index, 1);
+  }
+
+  offAllDevice() {
+    this._devices.forEach((item) => {
+      item.off();
+    })
+  }
+
+}
+
+const sh = new SmartHouse('name1');
+sh.addDevice(new AirConditioning("AirCond1"));
+sh.addDevice(new AirConditioning("AirCond2"));
+sh.addDevice(new TV("TV1"));
+console.log(sh.devices);
+console.log(sh.getDeviceByName("AirCond1"));
+sh.getDeviceByName("AirCond1").on();
+console.log(sh.getDeviceByName("AirCond1"));
+sh.getDeviceByName("AirCond2").on();
+console.log(sh.getDeviceByName("AirCond2"));
+sh.deleteDeviceByName("AirCond1")
+console.log(sh.devices);
+sh.offAllDevice();
+console.log(sh.devices);
+sh.addDevice(new AirConditioning("AirCond2"));
+sh.getDeviceByName("AirCond2").on();
+console.log(sh.getDeviceByName("AirCond2"));
