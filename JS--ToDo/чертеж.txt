@@ -1,0 +1,26 @@
+
+---Model---
+
+  Task
+    _id: Number
+    _name: String
+    getId(): Number
+    getName(): String
+
+  ToDo
+    _tasks: Task[]
+    getTasks(): Task[]
+    addTask(Task): void
+    deleteTaskById(Number): void
+    deleteTaskByName(Name): void
+    clear(): void    
+
+
+  --View--
+  
+  ToDoView
+    _model:ToDo // что рисовать?
+    _mountpoint: HTMLDivElement // куда рисовать?
+    _oListTasks: HTMLOlistElement
+    _addTask(String): void
+    render(): void
